@@ -14,6 +14,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Vector;
 
+import static com.company.UIHandler.blocksStash;
+
 public class MemHandler {
     static Vector<BlocksHandler> blocksStashLoad;
     static File loader;
@@ -55,9 +57,10 @@ public class MemHandler {
         JPanel list = new JPanel();
         if (fileList != null){
             list.setLayout(new GridLayout(fileList.length, 1));
-            list.setBorder(new BevelBorder(BevelBorder.RAISED));
+            list.setBorder(new BevelBorder(BevelBorder.LOWERED));
             for (File file:fileList) {
                 JPanel container = new JPanel();
+                container.setBorder(new BevelBorder(BevelBorder.RAISED));
                 container.setBackground(Color.GRAY);
                 JLabel name = new JLabel(file.getName());
                 name.setHorizontalAlignment(JLabel.CENTER);
@@ -106,7 +109,7 @@ public class MemHandler {
         loader = new File(FileSystemView.getFileSystemView().getDefaultDirectory().getAbsolutePath() + "/KTA/" + name +".txt");
         try {
             FileWriter writer = new FileWriter(loader);
-            for (BlocksHandler block: blocksStashLoad) {
+            for (BlocksHandler block: blocksStash) {
                 writer.write(block.type + " " + block.prompt + " " + block.length + "\r\n");
             }
             writer.flush();
@@ -135,6 +138,8 @@ public class MemHandler {
     } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        UIHandler.blocks.repaint();
+        UIHandler.blocks.revalidate();
     }
 
     public static void deleteLayout(String name) {

@@ -27,6 +27,7 @@ public class UIHandler {
         buttonControl.add(saverButton);
 
         Button repeatButton = new Button("Repeat sequence");
+        repeatButton.setBackground(Color.white);
         repeatButton.addActionListener(e -> {
             repeat =! repeat;
             if (repeat){
@@ -62,6 +63,7 @@ public class UIHandler {
             pauseLengthText.setText(pauseLength.getValue() + " ms");
         });
         addPauseBlockButton.addActionListener(e -> BlocksHandler.addPause(pauseLength.getValue()));
+        addFunctionBlockButton.setBackground(Color.white);
         addFunctionBlockButton.addActionListener( e -> {
             listening = !listening;
             if (listening){
@@ -78,16 +80,16 @@ public class UIHandler {
 
             @Override
             public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
                 if (listening){
                     BlocksHandler.addPrompt(String.valueOf(e.getKeyCode()), "Keyboard");
                 }
                 blocks.revalidate();
                 blocks.repaint();
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
             }
         });
         pauseControl.addMouseListener(new MouseListener() {
