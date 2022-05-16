@@ -73,8 +73,11 @@ public class MemHandler {
 
                     @Override
                     public void mousePressed(MouseEvent e) {
-                        System.out.println("TRIGGER " + file.getName().split(".txt")[0]);
-                        loadLayout(file.getName().split(".txt")[0]);
+                        if (e.getButton() == MouseEvent.BUTTON3){setupName.setText(file.getName().split(".txt")[0]);}
+                        else {
+                            System.out.println("TRIGGER " + file.getName().split(".txt")[0]);
+                            loadLayout(file.getName().split(".txt")[0]);
+                        }
                     }
 
                     @Override

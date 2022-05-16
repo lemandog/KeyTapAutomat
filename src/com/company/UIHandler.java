@@ -52,13 +52,13 @@ public class UIHandler {
         pauseControl.setSize(400,200);
         JSlider pauseLength = new JSlider();
         pauseLength.setMaximum(10000);
-        pauseLength.setMinimum(0);
-        pauseLength.setValue(10);
+        pauseLength.setMinimum(50);
+        pauseLength.setValue(50);
         pauseLength.setMajorTickSpacing(500);
         pauseLength.setMinorTickSpacing(50);
         pauseLength.setSnapToTicks(true);
         pauseLength.setPaintTicks(true);
-        JLabel pauseLengthText = new JLabel("10 ms");
+        JLabel pauseLengthText = new JLabel(pauseLength.getValue() + " ms");
         pauseLength.addChangeListener(e -> {
             pauseLengthText.setText(pauseLength.getValue() + " ms");
         });
@@ -133,7 +133,10 @@ public class UIHandler {
         blocks = new JPanel();
         blocks.setMinimumSize(new Dimension(400,200));
         blocks.setBackground(Color.black);
-        main.add(blocks);
+        JScrollPane verticalPane = new JScrollPane(blocks,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        main.add(verticalPane);
         main.setVisible(true);
     }
     private void startSequence() {
